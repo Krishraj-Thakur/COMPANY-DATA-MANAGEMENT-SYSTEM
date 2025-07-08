@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
-using API.core.DbModels;
 
 namespace API.core.DbModels;
 
@@ -26,13 +25,13 @@ public partial class Db1Context : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Server=DESKTOP-QAA07KB;Database=db1;Integrated Security=true;TrustServerCertificate=True;");
+        => optionsBuilder.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=db1;Integrated Security=true;TrustServerCertificate=True;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<MaterialMaster>(entity =>
         {
-            entity.HasKey(e => e.MatId).HasName("PK__material__FCB3E5279BE510B1");
+            entity.HasKey(e => e.MatId).HasName("PK__material__FCB3E52775C16220");
 
             entity.ToTable("material_master");
 
@@ -50,7 +49,7 @@ public partial class Db1Context : DbContext
 
         modelBuilder.Entity<PritemDetail>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__PRItem_D__3213E83F6DA0BAF1");
+            entity.HasKey(e => e.Id).HasName("PK__PRItem_D__3213E83F90F434BA");
 
             entity.ToTable("PRItem_Details");
 
@@ -62,23 +61,23 @@ public partial class Db1Context : DbContext
             entity.Property(e => e.DeliveryDate)
                 .HasColumnType("datetime")
                 .HasColumnName("delivery_date");
-            entity.Property(e => e.MatCode).HasColumnName("mat_code");
+            entity.Property(e => e.MatId).HasColumnName("mat_id");
             entity.Property(e => e.PrId).HasColumnName("pr_id");
 
             entity.HasOne(d => d.MatCodeNavigation).WithMany(p => p.PritemDetails)
-                .HasForeignKey(d => d.MatCode)
+                .HasForeignKey(d => d.MatId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__PRItem_De__mat_c__76969D2E");
+                .HasConstraintName("FK__PRItem_De__mat_i__36B12243");
 
             entity.HasOne(d => d.Pr).WithMany(p => p.PritemDetails)
                 .HasForeignKey(d => d.PrId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__PRItem_De__pr_id__75A278F5");
+                .HasConstraintName("FK__PRItem_De__pr_id__35BCFE0A");
         });
 
         modelBuilder.Entity<PurchaseRequest>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__purchase__3213E83FD404B499");
+            entity.HasKey(e => e.Id).HasName("PK__purchase__3213E83F97F7A472");
 
             entity.ToTable("purchase_request");
 
@@ -100,12 +99,12 @@ public partial class Db1Context : DbContext
             entity.HasOne(d => d.PrtypeNavigation).WithMany(p => p.PurchaseRequests)
                 .HasForeignKey(d => d.Prtype)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__purchase___prtyp__72C60C4A");
+                .HasConstraintName("FK__purchase___prtyp__32E0915F");
         });
 
         modelBuilder.Entity<PurchaseType>(entity =>
         {
-            entity.HasKey(e => e.PrtypeId).HasName("PK__purchase__092C231131CC477B");
+            entity.HasKey(e => e.PrtypeId).HasName("PK__purchase__092C2311E330E28D");
 
             entity.ToTable("purchase_type");
 

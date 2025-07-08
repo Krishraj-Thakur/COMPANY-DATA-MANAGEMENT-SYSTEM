@@ -20,10 +20,10 @@ namespace API1.AutoMapper
                 .ReverseMap();
             CreateMap<PritemDetail, PritemDetailsDTO>()
                 .ForMember(dest => dest.MaterialMaster, opt => opt.MapFrom(src => src.MatCodeNavigation));
-                //.ReverseMap();
+            //.ReverseMap();
             CreateMap<PritemDetailsDTO, PritemDetail>();
             //    .ForMember(dest => dest.MatCodeNavigation, opt => opt.MapFrom(src => src.MaterialMaster))
-            //    .ForMember(dest => dest.Id, opt => opt.Ignore())
+            //  .ForMember(dest => dest.Id, opt => opt.Ignore());
             //    .ReverseMap();
             CreateMap<MaterialMaster, MaterialMasterDTO>()
                 .ReverseMap();

@@ -11,7 +11,7 @@ namespace API.core.DTO_s
         
            // public int Id { get; set; }  // Refers to PurchaseRequest
           //  public int PrId { get; set; }  // Refers to PurchaseRequest
-            public int MatCode { get; set; }  // Refers to MaterialMaster
+            public int MatId { get; set; }  // Refers to MaterialMaster
             public int AvailableQuantity { get; set; }
             public DateTime DeliveryDate { get; set; }
             public string? CurrentStatus { get; set; }

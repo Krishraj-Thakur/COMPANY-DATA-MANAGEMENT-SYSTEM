@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 
 namespace API.core.DbModels;
 
@@ -10,7 +9,7 @@ public partial class PritemDetail
 
     public int PrId { get; set; }
 
-    public int MatCode { get; set; }
+    public int MatId { get; set; }
 
     public int? AvailableQuantity { get; set; }
 

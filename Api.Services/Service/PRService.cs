@@ -33,12 +33,24 @@ namespace Api.Services.Service
             //debugger line below
             _context.PurchaseRequests.Add(entity);
             _context.SaveChanges();
-           foreach(var itm in entity.PritemDetails)
-            {
-                itm.PrId = entity.Id;
-                _context.PritemDetails.AddRange(itm);
-            }
-            _context.SaveChanges();
+            //var pritems=entity.PritemDetails.ToList();
+           //foreach(var itm in pritems)
+           // {
+           //     //itm.PrId = entity.Id;
+           //     var prItemdetails = new PritemDetail
+           //     {
+           //         PrId = entity.Id,
+           //         AvailableQuantity = itm.AvailableQuantity,
+           //         DeliveryDate = itm.DeliveryDate,
+           //         CurrentStatus = itm.CurrentStatus,
+           //         MatId = itm.MatId
+
+           //     };
+           //     _context.PritemDetails.AddRange(prItemdetails);
+                
+           // }
+           // _context.SaveChanges();
+
         }
         public void Delete(int id)
         {
